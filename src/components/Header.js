@@ -1,7 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-const Header = props => (
-    <div className="header">
-        <div className="container"></div>
-    </div>
-)
+const Header =()=> (<div>HEADER I am a simple stateless component</div>);
+
+export default Header;

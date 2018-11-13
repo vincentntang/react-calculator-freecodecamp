@@ -1,8 +1,9 @@
 .main {
     margin-top: 50px;
 }
-.calculator-wrapper {
+.calculator{
     width: 1000px;
     margin: 0 auto;
     background-color: lightgrey;
 }
+/* CSS GRID */

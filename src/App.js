@@ -3,13 +3,15 @@ import React, { Component } from 'react';
 // import TestClass from './components/TestClass';
 import Display from './components/Display';
 import Grid from './components/Grid';
+import Header from './components/Header';
 import './App.css';
 
 class App extends Component {
   render(){
     return(
       <div className="main">
-        <div className="calculator-wrapper">
+        <div className="calculator">
+          <Header/>
           <Display/>
           <Grid/>
         </div>
