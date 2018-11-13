@@ -1,5 +1,5 @@
 import React from 'react';
 
-const Header =()=> (<div>HEADER I am a simple stateless component</div>);
+const Header =()=> (<h2 id="title">Electronic Calculator</h2>);
 
 export default Header;

@@ -1,5 +1,10 @@
-import React from 'react';
+import React from "react";
 
-const Display =()=> (<div>DISPLAY I am a simple stateless component</div>);
+const Display = () => (
+  <div class="display">
+    <p id="topDisplay">0</p>
+    <p id="botDisplay">01</p>
+  </div>
+);
 
 export default Display;
