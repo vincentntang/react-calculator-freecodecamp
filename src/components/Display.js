@@ -1,9 +1,9 @@
 import React from "react";
 
 const Display = () => (
-  <div class="display-wrapper">
+  <div className="display-wrapper">
     <p id="display">0</p>
-    <p id="botDisplay">01</p>
+    <p id="currentOperation">01</p>
   </div>
 );
 
