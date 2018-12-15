@@ -1,9 +1,9 @@
 import React from "react";
 
-const Display = () => (
-  <div class="display">
-    <p id="topDisplay">0</p>
-    <p id="botDisplay">01</p>
+const Display = props => (
+  <div className="display-wrapper">
+    <p id="display">0</p>
+    <p id="currentOperation">{props.curDisplay}</p>
   </div>
 );
 

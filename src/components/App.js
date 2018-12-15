@@ -5,12 +5,18 @@ import Header from "./Header";
 import "../styles/App.css";
 
 class App extends Component {
+  state = {
+    curDisplay: 5
+  };
+  componentDidUpdate() {
+    console.log("Hello world");
+  }
   render() {
     return (
-      <div class="container">
-        <div class="calculator">
+      <div className="container">
+        <div className="calculator">
           <Header />
-          <Display />
+          <Display curDisplay={this.state.curDisplay} />
           <Grid />
         </div>
       </div>
