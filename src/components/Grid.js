@@ -47,10 +47,10 @@ const Grid = () => (
     <button id="three" value="3" className="num">
       3
     </button>
-    <button id="equals" value="=" id="equal-button">
+    <button id="equals" value="=">
       =
     </button>
-    <button id="zero" value="0" className="num" id="zero-button">
+    <button id="zero" value="0" className="num">
       0
     </button>
     <button id="decimal" value=".">
