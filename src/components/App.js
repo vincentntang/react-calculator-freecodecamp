@@ -16,7 +16,7 @@ class App extends Component {
       <div className="container">
         <div className="calculator">
           <Header />
-          <Display display={this.state.curDisplay} />
+          <Display curDisplay={this.state.curDisplay} />
           <Grid />
         </div>
       </div>
