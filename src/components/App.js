@@ -8,7 +8,11 @@ import "../styles/App.css";
 
 class App extends Component {
   state = {
-    curDisplay: 5
+    curDisplay: 5,
+    prevValue: 0,
+    formula: "",
+    curSign: "",
+    lastClicked: ""
   };
   componentDidMount() {
     console.log("I was triggered during componentDidMount");
