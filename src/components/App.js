@@ -6,7 +6,7 @@ import "../styles/App.css";
 
 class App extends Component {
   state = {
-    curValue: []
+    curDisplay: 5
   };
   componentDidUpdate() {
     console.log("Hello world");
@@ -16,7 +16,7 @@ class App extends Component {
       <div className="container">
         <div className="calculator">
           <Header />
-          <Display />
+          <Display display={this.state.curDisplay} />
           <Grid />
         </div>
       </div>
