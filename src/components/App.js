@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Output from "./Output";
 import Formula from "./Formula";
-import Grid from "./Grid";
+import Buttons from "./Buttons";
 import Header from "./Header";
 import "../styles/App.css";
+import { operations, isOper } from "../helpers/operators";
 
 class App extends Component {
   state = {
@@ -21,7 +22,7 @@ class App extends Component {
             <Output curDisplay={this.state.curDisplay} />
             <Formula curDisplay={this.state.curDisplay} />
           </div>
-          <Grid />
+          <Buttons />
         </div>
       </div>
     );

@@ -1,6 +1,6 @@
 import React from "react";
 
-const Grid = () => (
+const Buttons = () => (
   <div className="buttons">
     <button id="clear" value="AC">
       AC
@@ -59,4 +59,4 @@ const Grid = () => (
   </div>
 );
 
-export default Grid;
+export default Buttons;
