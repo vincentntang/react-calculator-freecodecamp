@@ -54,11 +54,11 @@ h2#title {
   background-color: #a72d45;
   /* dark red */
 }
-.buttons #equal-button {
+.buttons #equals {
   grid-column: 4/5;
   grid-row: 4/6;
 }
-.buttons #zero-button {
+.buttons #zero {
   grid-row: 5/6;
   grid-column: 1/3;
 }
