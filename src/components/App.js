@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import Display from "./Display";
+import Output from "./Output";
+import Formula from "./Formula";
 import Grid from "./Grid";
 import Header from "./Header";
 import "../styles/App.css";
@@ -16,7 +17,10 @@ class App extends Component {
       <div className="container">
         <div className="calculator">
           <Header />
-          <Display curDisplay={this.state.curDisplay} />
+          <div className="display-wrapper">
+            <Output curDisplay={this.state.curDisplay} />
+            <Formula curDisplay={this.state.curDisplay} />
+          </div>
           <Grid />
         </div>
       </div>
