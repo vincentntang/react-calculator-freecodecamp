@@ -29,7 +29,7 @@ const hasDecimal = /[.]/;
 
 class App extends Component {
   state = {
-    curDisplay: 0, // current Number Token
+    curValue: 0, // current Number Token
     prevValue: 0,
     formula: "",
     curSign: "",
@@ -49,20 +49,20 @@ class App extends Component {
     console.log("handleClearEntry");
   };
   handleOperators = e => {
-    if (this.state.curDisplay === 0) {
+    if (this.state.curValue === 0) {
       // Disallow first value as operator
     } else {
       // Forbid sequential operators
       if (isOperator.test(this.state.lastClicked)) {
         this.setState({
           // Allow operator change on current token
-          curDisplay: e.target.value,
+          curValue: e.target.value,
           curSign: e.target.value,
           formula: this.state.formula.slice(0, -1) + e.target.value
         });
       } else {
         this.setState({
-          curDisplay: e.target.value,
+          curValue: e.target.value,
           formula: this.state.formula + e.target.value,
           curSign: e.target.value,
           lastClicked: e.target.value
@@ -72,7 +72,7 @@ class App extends Component {
   };
   handleNumbers = e => {
     this.setState({
-      curDisplay: e.target.value,
+      curValue: e.target.value,
       prevValue: e.target.value,
       formula: this.state.formula + e.target.value,
       lastClicked: e.target.value
@@ -93,7 +93,7 @@ class App extends Component {
           <Header />
           <div className="display-wrapper">
             <Formula formula={this.state.formula} />
-            <Output curDisplay={this.state.curDisplay} />
+            <Output curValue={this.state.curValue} />
           </div>
           <Buttons
             clearAll={this.handleClearAll}
