@@ -6,6 +6,8 @@ import Header from "./Header";
 import "../styles/App.css";
 // import { operations, isOper } from "../helpers/operators";
 
+const isOperator = /[x/+-]/;
+
 class App extends Component {
   state = {
     curDisplay: 5,
@@ -19,13 +21,17 @@ class App extends Component {
   }
   // Operators
   handleClearAll = () => {
-    console.log("handleClearAll");
+    console.log("numbers");
   };
   handleClearEntry = () => {
     console.log("handleClearEntry");
   };
-  handleOperators = () => {
-    console.log("handleOperators");
+  handleOperators = e => {
+    console.log(this.state);
+    this.setState({
+      curDisplay: e.target.value
+    });
+    console.log(this.state);
   };
   handleNumbers = () => {
     console.log("handleNumbers");
