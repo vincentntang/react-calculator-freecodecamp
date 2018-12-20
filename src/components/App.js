@@ -7,6 +7,7 @@ import "../styles/App.css";
 // import { operations, isOper } from "../helpers/operators";
 
 const isOperator = /[x÷+-]/;
+const hasDecimal = /[.]/;
 
 /**
  * REQUIREMENTS
@@ -22,11 +23,13 @@ const isOperator = /[x÷+-]/;
  * Stage 2: Disallow formula to change on sequential operators
  * Stage 3: Allow operator change on current token
  * Stage 3.1: Disallow first value as operator
+ * Stage 4: Disallow sequential "."
+ * Stage 4.1: Disallow multiple "." per numeric token (related)
  */
 
 class App extends Component {
   state = {
-    curDisplay: 0,
+    curDisplay: 0, // current Number Token
     prevValue: 0,
     formula: "",
     curSign: "",
@@ -46,10 +49,10 @@ class App extends Component {
     console.log("handleClearEntry");
   };
   handleOperators = e => {
-    // Forbid sequential operators
     if (this.state.curDisplay === 0) {
       // Disallow first value as operator
     } else {
+      // Forbid sequential operators
       if (isOperator.test(this.state.lastClicked)) {
         this.setState({
           // Allow operator change on current token
@@ -79,7 +82,9 @@ class App extends Component {
     console.log("handleEvaluate");
   };
   handleDecimal = () => {
-    console.log("handleDecimal");
+    if (!hasDecimal.test(this.state.curValue)) {
+      // do something
+    }
   };
   render() {
     return (
