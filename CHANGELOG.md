@@ -12,3 +12,9 @@ Things learned
 ### 2. Adjust CSS so it allows 2 line formula
 
 ![](https://i.imgur.com/rDsx0VV.png)
+
+### 3. Disallow formula to change on sequential operators
+
+- I used a regex command , `isOperator.test(string)` , which returns true or false. By setting the last flag of `lastClicked`, I can double check if the last item was an operator. If so, then do nothing.
+
+![](https://i.imgur.com/z7LEu7i.gif)
