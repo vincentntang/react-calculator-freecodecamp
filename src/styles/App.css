@@ -1,4 +1,4 @@
-.container {
+body {
   display: flex;
   justify-content: center;
 }
@@ -13,7 +13,7 @@ h2#title {
   border: 2px solid black;
   border-radius: 10px;
   background-color: #dfd8d0;
-  height: 340px; /* Not sure why I can't resize */
+  height: 350px; /* Not sure why I can't resize */
 }
 
 .display-wrapper {
@@ -22,15 +22,27 @@ h2#title {
   border: 2px solid black;
   text-align: right;
   padding-right: 5px;
+  min-height: 40px;
+  max-width: 230px;
+  position: relative;
 }
-.display-wrapper #output {
-  font-size: 20px;
-}
-.display-wrapper #entry {
-  color: grey;
-}
+
 .display-wrapper p {
   margin: 0px;
+}
+.display-wrapper #currentOutput {
+  min-height: 20px;
+  width: 100%;
+  word-wrap: break-word;
+  font-family: consolas;
+  font-size: 120%;
+}
+.display-wrapper #currentFormula {
+  min-height: 20px;
+  width: 100%;
+  word-wrap: break-word;
+  font-size: 90%;
+  font-family: arial;
 }
 
 /*********************** BUTTONS ****************/
