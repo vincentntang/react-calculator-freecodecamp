@@ -19,7 +19,10 @@ class App extends Component {
   componentDidMount() {
     console.log("I was triggered during componentDidMount");
   }
-  // Operators
+  componentDidUpdate() {
+    // For debugging purposes
+    console.log(this.state);
+  }
   handleClearAll = () => {
     console.log("numbers");
   };
@@ -27,11 +30,10 @@ class App extends Component {
     console.log("handleClearEntry");
   };
   handleOperators = e => {
-    console.log(this.state);
     this.setState({
-      curDisplay: e.target.value
+      curDisplay: e.target.value,
+      curSign: e.target.value
     });
-    console.log(this.state);
   };
   handleNumbers = () => {
     console.log("handleNumbers");
