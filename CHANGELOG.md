@@ -8,3 +8,7 @@ Things learned
 - Your `app.js` method needs to have a parameter of `e`, which is the event triggered on the `onClick` synthetic event. That HTML DOM element has a value so you use `e.target.value` to grab it. From there you can use `setState`, and, this changes the state, which rerenders the change over to the `Output` component
 
 ![](https://i.imgur.com/YVNrvD5.gif)
+
+### 2. Adjust CSS so it allows 2 line formula
+
+![](https://i.imgur.com/rDsx0VV.png)

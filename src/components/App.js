@@ -8,9 +8,21 @@ import "../styles/App.css";
 
 const isOperator = /[x/+-]/;
 
+/**
+ * REQUIREMENTS
+ * It should.......
+ * Add a number
+ * Forbid sequential operators
+ * Forbid multiple "."
+ * Limit one "." per token
+ * Set to 0 if nothing added
+ *
+ * Create, Delete, Update
+ */
+
 class App extends Component {
   state = {
-    curDisplay: 5,
+    curDisplay: 0,
     prevValue: 0,
     formula: "",
     curSign: "",
@@ -35,8 +47,11 @@ class App extends Component {
       curSign: e.target.value
     });
   };
-  handleNumbers = () => {
-    console.log("handleNumbers");
+  handleNumbers = e => {
+    this.setState({
+      curDisplay: e.target.value,
+      formula: this.state.formula + e.target.value
+    });
   };
   handleEvaluate = () => {
     console.log("handleEvaluate");
@@ -50,8 +65,8 @@ class App extends Component {
         <div className="calculator">
           <Header />
           <div className="display-wrapper">
+            <Formula formula={this.state.formula} />
             <Output curDisplay={this.state.curDisplay} />
-            <Formula curDisplay={this.state.curDisplay} />
           </div>
           <Buttons
             clearAll={this.handleClearAll}
