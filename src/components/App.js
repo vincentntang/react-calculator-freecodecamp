@@ -21,6 +21,7 @@ const isOperator = /[x÷+-]/;
  * Stage 1: Get things to render on screen with numbers and operators
  * Stage 2: Disallow formula to change on sequential operators
  * Stage 3: Allow operator change on current token
+ * Stage 3.1: Disallow first value as operator
  */
 
 class App extends Component {
@@ -46,14 +47,24 @@ class App extends Component {
   };
   handleOperators = e => {
     // Forbid sequential operators
-    if (isOperator.test(this.state.lastClicked)) {
+    if (this.state.curDisplay === 0) {
+      // Disallow first value as operator
     } else {
-      this.setState({
-        curDisplay: e.target.value,
-        formula: this.state.formula + e.target.value,
-        curSign: e.target.value,
-        lastClicked: e.target.value
-      });
+      if (isOperator.test(this.state.lastClicked)) {
+        this.setState({
+          // Allow operator change on current token
+          curDisplay: e.target.value,
+          curSign: e.target.value,
+          formula: this.state.formula.slice(0, -1) + e.target.value
+        });
+      } else {
+        this.setState({
+          curDisplay: e.target.value,
+          formula: this.state.formula + e.target.value,
+          curSign: e.target.value,
+          lastClicked: e.target.value
+        });
+      }
     }
   };
   handleNumbers = e => {

@@ -18,3 +18,10 @@ Things learned
 - I used a regex command , `isOperator.test(string)` , which returns true or false. By setting the last flag of `lastClicked`, I can double check if the last item was an operator. If so, then do nothing.
 
 ![](https://i.imgur.com/z7LEu7i.gif)
+
+### 4. Allow operator change on current token AND Disallow first value as operator
+
+- I assume the `curDisplay ==0` as this is my default value, on a hard reset or initialization of calculator. This is how I disallow first value as operator
+- To change operator on current token, slice off the last character, and add in the new one
+
+![](https://i.imgur.com/yKFBzrL.gif)
