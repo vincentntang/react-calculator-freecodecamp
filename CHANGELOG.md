@@ -25,3 +25,16 @@ Things learned
 - To change operator on current token, slice off the last character, and add in the new one
 
 ![](https://i.imgur.com/yKFBzrL.gif)
+
+### 5. Capture currentValue number token
+
+- Assume that `curValue` == 0, we ignore this and if its an operator. This captures a stream of numbers into the `curValue` token
+
+![](https://i.imgur.com/013g7nc.gif)
+
+### 6. Allow only one decimal per numeric token
+
+- `curValue` has a value of an `operator` before a numeric string is entered (at least, for the time being). Because of this, you can assume (For the time being) that it's you'll need to add a `"0."` value.
+- To disallow multiple `.` per numeric token, use a regex match on the `curValue`
+
+![](https://i.imgur.com/idr3uKD.gif)

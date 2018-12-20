@@ -72,7 +72,7 @@ class App extends Component {
     }
   };
   handleNumbers = e => {
-    if (this.state.curValue == 0 || isOperator.test(this.state.curValue)) {
+    if (this.state.curValue === 0 || isOperator.test(this.state.curValue)) {
       // Remove initialization and operator from token
       this.setState({ curValue: e.target.value });
     } else {
@@ -89,7 +89,17 @@ class App extends Component {
     console.log("handleEvaluate");
   };
   handleDecimal = () => {
-    if (!hasDecimal.test(this.state.curValue)) {
+    // If operator, the first value must be "0."
+    if (isOperator.test(this.state.curValue)) {
+      this.setState({
+        curValue: "0.",
+        formula: this.state.formula + "0."
+      });
+    } else if (!hasDecimal.test(this.state.curValue)) {
+      this.setState({
+        curValue: this.state.curValue + ".",
+        formula: this.state.formula + "."
+      });
     }
   };
   render() {
