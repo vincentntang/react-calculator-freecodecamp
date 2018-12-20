@@ -25,6 +25,7 @@ const hasDecimal = /[.]/;
  * Stage 3.1: Disallow first value as operator
  * Stage 4: Disallow sequential "."
  * Stage 4.1: Disallow multiple "." per numeric token (related)
+ * Stage 4.2: curValue should capture a sequence of numbers
  */
 
 class App extends Component {
@@ -71,8 +72,14 @@ class App extends Component {
     }
   };
   handleNumbers = e => {
+    if (this.state.curValue == 0 || isOperator.test(this.state.curValue)) {
+      // Remove initialization and operator from token
+      this.setState({ curValue: e.target.value });
+    } else {
+      // Capture a sequence of numbers
+      this.setState({ curValue: this.state.curValue + e.target.value });
+    }
     this.setState({
-      curValue: e.target.value,
       prevValue: e.target.value,
       formula: this.state.formula + e.target.value,
       lastClicked: e.target.value
@@ -83,7 +90,6 @@ class App extends Component {
   };
   handleDecimal = () => {
     if (!hasDecimal.test(this.state.curValue)) {
-      // do something
     }
   };
   render() {
