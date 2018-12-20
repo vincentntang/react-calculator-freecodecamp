@@ -35,6 +35,7 @@ h2#title {
   width: 100%;
   word-wrap: break-word;
   font-family: consolas;
+  font-size: 120%;
 }
 .display-wrapper #currentFormula {
   min-height: 20px;
