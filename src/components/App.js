@@ -93,9 +93,7 @@ class App extends Component {
       lastClicked: e.target.value
     });
   };
-  handleEvaluate = () => {
-    console.log("handleEvaluate");
-  };
+  handleEvaluate = () => {};
   handleDecimal = () => {
     // If operator previously used, the first value must be "0."
     if (isOperator.test(this.state.curValue)) {
