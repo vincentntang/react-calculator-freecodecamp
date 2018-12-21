@@ -26,6 +26,7 @@ const hasDecimal = /[.]/;
  * Stage 4: Disallow sequential "."
  * Stage 4.1: Disallow multiple "." per numeric token (related)
  * Stage 4.2: curValue should capture a sequence of numbers
+ * Stage 5: Creation of values done, now delete with clearAll
  */
 
 class App extends Component {
@@ -44,7 +45,14 @@ class App extends Component {
     console.log(this.state);
   }
   handleClearAll = () => {
-    console.log("numbers");
+    // Reset everything
+    this.setState({
+      curValue: 0, // current Number Token
+      prevValue: 0,
+      formula: "",
+      curSign: "",
+      lastClicked: ""
+    });
   };
   handleClearEntry = () => {
     console.log("handleClearEntry");
@@ -89,7 +97,7 @@ class App extends Component {
     console.log("handleEvaluate");
   };
   handleDecimal = () => {
-    // If operator, the first value must be "0."
+    // If operator previously used, the first value must be "0."
     if (isOperator.test(this.state.curValue)) {
       this.setState({
         curValue: "0.",

@@ -38,3 +38,10 @@ Things learned
 - To disallow multiple `.` per numeric token, use a regex match on the `curValue`
 
 ![](https://i.imgur.com/idr3uKD.gif)
+
+### 7. ClearAll, reset everything
+
+- Deletion handled with clearAll.
+- Solution was to just copypaste the initial state into `handleClearAll()`
+
+![](https://i.imgur.com/V3azIUG.gif)
