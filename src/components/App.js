@@ -54,9 +54,7 @@ class App extends Component {
       lastClicked: ""
     });
   };
-  handleClearEntry = () => {
-    console.log("handleClearEntry");
-  };
+  handleClearEntry = () => {};
   handleOperators = e => {
     if (this.state.curValue === 0) {
       // Disallow first value as operator
@@ -93,7 +91,9 @@ class App extends Component {
       lastClicked: e.target.value
     });
   };
-  handleEvaluate = () => {};
+  handleEvaluate = () => {
+    this.setState({});
+  };
   handleDecimal = () => {
     // If operator previously used, the first value must be "0."
     if (isOperator.test(this.state.curValue)) {

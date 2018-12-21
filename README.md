@@ -11,3 +11,7 @@ formula
 
 curValue holds the current numeric token
 formula holds the entirety of everything before `eval` is made
+
+While not computational efficient, it uses regex commands on `formula` and `curValue` to determine what actions should occur on the state.
+
+For instance, you can't use `=` evaluate if the previous button click was an operator like `+-/*`.
