@@ -72,3 +72,9 @@ Things learned
 - Use two temp variables to store the state `tempFormula` and `evaluate` so easier to clean input before `eval`
 
 ![](https://i.imgur.com/joBRYGe.gif)
+
+### 12. Reset decimal value after evaluate
+
+- Seperate logic for adding `.`, one on initialization and reset, another for ongoing formula values with numbers, and last for everything else
+
+![](https://i.imgur.com/roLdp5U.gif)

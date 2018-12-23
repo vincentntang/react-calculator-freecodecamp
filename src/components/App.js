@@ -32,13 +32,17 @@ const endsWithOperator = /[*\/+-]$/;
  */
 
 class App extends Component {
+  /*
+   * STATE VARIABLES
+   * CurValue is the current numeric or operator token
+   * Formula is the full operation before `eval` is called
+   * evaluated is a true/false flag to let other methods handle reset logic
+   * Unused variables: prevValue, curSign, lastClicked
+   */
   state = {
     curValue: 0,
     formula: "",
     evaluated: false
-    // prevValue: 0,
-    // curSign: "",
-    // lastClicked:"",
   };
   componentDidMount() {
     console.log("I was triggered during componentDidMount");
@@ -108,6 +112,7 @@ class App extends Component {
     if (endsWithOperator.test(tempFormula)) {
       tempFormula = tempFormula.slice(0, -1);
     }
+    // order of operations calculate
     let evaluate = eval(tempFormula);
     this.setState({
       curValue: evaluate,
@@ -116,8 +121,15 @@ class App extends Component {
     });
   };
   handleDecimal = () => {
-    // If operator previously used, the first value must be "0."
-    if (isOperator.test(this.state.curValue)) {
+    // If initialized, or just evaluated, the first value must be "0."
+    if (this.state.curValue === 0 || this.state.evaluated) {
+      this.setState({
+        curValue: "0.",
+        formula: "0.",
+        evaluated: false
+      });
+      // If operator previously used, append result
+    } else if (isOperator.test(this.state.curValue)) {
       this.setState({
         curValue: "0.",
         formula: this.state.formula + "0."
