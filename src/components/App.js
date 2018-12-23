@@ -37,7 +37,6 @@ class App extends Component {
     prevValue: 0,
     formula: "",
     curSign: "",
-    lastClicked: "",
     evaluated: false
   };
   componentDidMount() {
@@ -54,7 +53,6 @@ class App extends Component {
       prevValue: 0,
       formula: "",
       curSign: "",
-      lastClicked: "",
       evaluated: false
     });
   };
@@ -64,7 +62,7 @@ class App extends Component {
       // Disallow first value as operator
     } else {
       // Forbid sequential operators
-      if (isOperator.test(this.state.lastClicked)) {
+      if (endsWithOperator.test(this.state.formula)) {
         this.setState({
           // Allow operator change on current token
           curValue: e.target.value,
@@ -75,8 +73,7 @@ class App extends Component {
         this.setState({
           curValue: e.target.value,
           formula: this.state.formula + e.target.value,
-          curSign: e.target.value,
-          lastClicked: e.target.value
+          curSign: e.target.value
         });
       }
     }
@@ -99,8 +96,7 @@ class App extends Component {
       }
       this.setState({
         prevValue: e.target.value,
-        formula: this.state.formula + e.target.value,
-        lastClicked: e.target.value
+        formula: this.state.formula + e.target.value
       });
     }
   };
