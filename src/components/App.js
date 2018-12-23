@@ -91,15 +91,14 @@ class App extends Component {
         formula: e.target.value == 0 ? "" : e.target.value,
         evaluated: false
       });
-      // else, behave normally
     } else {
-      if (this.state.curValue == 0 && e.target.value == 0) {
+      if (this.state.curValue === 0 && e.target.value == 0) {
         // do nothing
       } else if (
         this.state.curValue === 0 ||
         isOperator.test(this.state.curValue)
       ) {
-        // Remove initialization and operator from token
+        // Remove 0 or operator replace with [1-9] number
         this.setState({
           curValue: e.target.value,
           formula: this.state.formula + e.target.value
