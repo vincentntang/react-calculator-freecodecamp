@@ -7,11 +7,22 @@ The source of truth at any given time is on the following state variables
 ```
 curValue
 formula
+evaluated
 ```
 
-curValue holds the current numeric token
-formula holds the entirety of everything before `eval` is made
+- curValue holds the current operation / numeric token
+- formula holds the entirety of everything before `eval` is made
+- Evaluated is a flag check to determine if "=" was last command
 
-While not computational efficient, it uses regex commands on `formula` and `curValue` to determine what actions should occur on the state.
+Quick demo showing the react state and functionality of app
 
-For instance, you can't use `=` evaluate if the previous button click was an operator like `+-/*`.
+![](https://i.imgur.com/XcV0eZH.gif)
+
+## Installing
+
+Run on root repository
+
+```
+npm install
+npm run start
+```
