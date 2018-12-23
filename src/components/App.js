@@ -57,7 +57,6 @@ class App extends Component {
       evaluated: false
     });
   };
-  handleClearEntry = () => {};
   handleOperators = e => {
     if (this.state.evaluated) {
       this.setState({
@@ -89,21 +88,28 @@ class App extends Component {
     if (this.state.evaluated) {
       this.setState({
         curValue: e.target.value,
-        formula: e.target.value,
+        formula: e.target.value == 0 ? "" : e.target.value,
         evaluated: false
       });
-      // else, behave normally
     } else {
-      if (this.state.curValue === 0 || isOperator.test(this.state.curValue)) {
-        // Remove initialization and operator from token
-        this.setState({ curValue: e.target.value });
+      if (this.state.curValue === 0 && e.target.value == 0) {
+        // do nothing
+      } else if (
+        this.state.curValue === 0 ||
+        isOperator.test(this.state.curValue)
+      ) {
+        // Remove 0 or operator replace with [1-9] number
+        this.setState({
+          curValue: e.target.value,
+          formula: this.state.formula + e.target.value
+        });
       } else {
         // Capture a sequence of numbers
-        this.setState({ curValue: this.state.curValue + e.target.value });
+        this.setState({
+          curValue: this.state.curValue + e.target.value,
+          formula: this.state.formula + e.target.value
+        });
       }
-      this.setState({
-        formula: this.state.formula + e.target.value
-      });
     }
   };
   handleEvaluate = () => {
@@ -113,7 +119,7 @@ class App extends Component {
       tempFormula = tempFormula.slice(0, -1);
     }
     // order of operations calculate
-    let evaluate = eval(tempFormula);
+    let evaluate = Math.round(10000000000 * eval(tempFormula)) / 10000000000;
     this.setState({
       curValue: evaluate,
       formula: tempFormula + "=" + evaluate,

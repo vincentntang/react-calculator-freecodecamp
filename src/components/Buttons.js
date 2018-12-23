@@ -2,12 +2,12 @@ import React from "react";
 
 const Buttons = props => (
   <div className="buttons">
-    <button id="clear" onClick={props.clearAll}>
+    <button id="clear" onClick={props.clearAll} value="AC">
       AC
     </button>
-    <button id="clear-entry" onClick={props.clearEntry} value="CE">
+    {/*<button id="clear-entry" onClick={props.clearEntry} value="CE">
       CE
-    </button>
+    </button>*/}
     <button id="divide" onClick={props.operators} value="/">
       ÷
     </button>

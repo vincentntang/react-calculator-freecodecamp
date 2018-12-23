@@ -78,3 +78,9 @@ Things learned
 - Seperate logic for adding `.`, one on initialization and reset, another for ongoing formula values with numbers, and last for everything else
 
 ![](https://i.imgur.com/roLdp5U.gif)
+
+### 13. Disallow sequential zero's draft
+
+- Logic is not pretty, but I assumed if `curValue` was 0, then it wouldn't do anything in that if condition.
+
+![](https://i.imgur.com/NmcjeTk.gif)
