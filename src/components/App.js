@@ -121,7 +121,7 @@ class App extends Component {
       tempFormula = tempFormula.slice(0, -1);
     }
     // order of operations calculate
-    let evaluate = eval(tempFormula);
+    let evaluate = Math.round(10000000000 * eval(tempFormula)) / 10000000000;
     this.setState({
       curValue: evaluate,
       formula: tempFormula + "=" + evaluate,
