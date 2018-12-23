@@ -8,11 +8,11 @@ const Buttons = props => (
     <button id="clear-entry" onClick={props.clearEntry} value="CE">
       CE
     </button>
-    <button id="divide" onClick={props.operators} value="÷">
+    <button id="divide" onClick={props.operators} value="/">
       ÷
     </button>
-    <button id="multiply" onClick={props.operators} value="x">
-      X
+    <button id="multiply" onClick={props.operators} value="*">
+      x
     </button>
     <button id="seven" onClick={props.numbers} value="7">
       7
@@ -34,7 +34,7 @@ const Buttons = props => (
     </button>
     <button id="six" value="6" onClick={props.numbers}>
       6
-    </button>{" "}
+    </button>
     <button id="add" onClick={props.operators} value="+">
       +
     </button>

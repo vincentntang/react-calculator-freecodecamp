@@ -6,8 +6,9 @@ import Header from "./Header";
 import "../styles/App.css";
 // import { operations, isOper } from "../helpers/operators";
 
-const isOperator = /[x÷+-]/;
+const isOperator = /[*\/+-]/;
 const hasDecimal = /[.]/;
+const endsWithOperator = /[*\/+-]$/;
 
 /**
  * REQUIREMENTS
@@ -26,75 +27,114 @@ const hasDecimal = /[.]/;
  * Stage 4: Disallow sequential "."
  * Stage 4.1: Disallow multiple "." per numeric token (related)
  * Stage 4.2: curValue should capture a sequence of numbers
+ * Stage 5: Creation of values done, now delete with clearAll
+ * Stage 6: Evaluate all
  */
 
 class App extends Component {
+  /*
+   * STATE VARIABLES
+   * CurValue is the current numeric or operator token
+   * Formula is the full operation before `eval` is called
+   * evaluated is a true/false flag to let other methods handle reset logic
+   * Unused variables: prevValue, curSign, lastClicked
+   */
   state = {
-    curValue: 0, // current Number Token
-    prevValue: 0,
+    curValue: 0,
     formula: "",
-    curSign: "",
-    lastClicked: ""
+    evaluated: false
   };
   componentDidMount() {
     console.log("I was triggered during componentDidMount");
   }
   componentDidUpdate() {
-    // For debugging purposes
-    console.log(this.state);
+    console.log("I updated");
   }
   handleClearAll = () => {
-    console.log("numbers");
+    this.setState({
+      curValue: 0,
+      formula: "",
+      evaluated: false
+    });
   };
-  handleClearEntry = () => {
-    console.log("handleClearEntry");
-  };
+  handleClearEntry = () => {};
   handleOperators = e => {
-    if (this.state.curValue === 0) {
-      // Disallow first value as operator
+    if (this.state.evaluated) {
+      this.setState({
+        formula: this.state.curValue + e.target.value,
+        curValue: e.target.value,
+        evaluated: false
+      });
     } else {
-      // Forbid sequential operators
-      if (isOperator.test(this.state.lastClicked)) {
-        this.setState({
-          // Allow operator change on current token
-          curValue: e.target.value,
-          curSign: e.target.value,
-          formula: this.state.formula.slice(0, -1) + e.target.value
-        });
-      } else {
-        this.setState({
-          curValue: e.target.value,
-          formula: this.state.formula + e.target.value,
-          curSign: e.target.value,
-          lastClicked: e.target.value
-        });
+      // Disallow first value as operator
+      if (!(this.state.curValue === 0)) {
+        // Forbid sequential operators
+        if (endsWithOperator.test(this.state.formula)) {
+          this.setState({
+            // Allow operator change on current token
+            curValue: e.target.value,
+            formula: this.state.formula.slice(0, -1) + e.target.value
+          });
+        } else {
+          this.setState({
+            curValue: e.target.value,
+            formula: this.state.formula + e.target.value
+          });
+        }
       }
     }
   };
   handleNumbers = e => {
-    if (this.state.curValue === 0 || isOperator.test(this.state.curValue)) {
-      // Remove initialization and operator from token
-      this.setState({ curValue: e.target.value });
+    // Reset if "=" was last command
+    if (this.state.evaluated) {
+      this.setState({
+        curValue: e.target.value,
+        formula: e.target.value,
+        evaluated: false
+      });
+      // else, behave normally
     } else {
-      // Capture a sequence of numbers
-      this.setState({ curValue: this.state.curValue + e.target.value });
+      if (this.state.curValue === 0 || isOperator.test(this.state.curValue)) {
+        // Remove initialization and operator from token
+        this.setState({ curValue: e.target.value });
+      } else {
+        // Capture a sequence of numbers
+        this.setState({ curValue: this.state.curValue + e.target.value });
+      }
+      this.setState({
+        formula: this.state.formula + e.target.value
+      });
     }
-    this.setState({
-      prevValue: e.target.value,
-      formula: this.state.formula + e.target.value,
-      lastClicked: e.target.value
-    });
   };
   handleEvaluate = () => {
-    console.log("handleEvaluate");
+    let tempFormula = this.state.formula;
+    // Remove last char if operator
+    if (endsWithOperator.test(tempFormula)) {
+      tempFormula = tempFormula.slice(0, -1);
+    }
+    // order of operations calculate
+    let evaluate = eval(tempFormula);
+    this.setState({
+      curValue: evaluate,
+      formula: tempFormula + "=" + evaluate,
+      evaluated: true
+    });
   };
   handleDecimal = () => {
-    // If operator, the first value must be "0."
-    if (isOperator.test(this.state.curValue)) {
+    // If initialized, or just evaluated, the first value must be "0."
+    if (this.state.curValue === 0 || this.state.evaluated) {
+      this.setState({
+        curValue: "0.",
+        formula: "0.",
+        evaluated: false
+      });
+      // If operator previously used, append result
+    } else if (isOperator.test(this.state.curValue)) {
       this.setState({
         curValue: "0.",
         formula: this.state.formula + "0."
       });
+      // otherwise just add a period
     } else if (!hasDecimal.test(this.state.curValue)) {
       this.setState({
         curValue: this.state.curValue + ".",

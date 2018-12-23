@@ -38,3 +38,43 @@ Things learned
 - To disallow multiple `.` per numeric token, use a regex match on the `curValue`
 
 ![](https://i.imgur.com/idr3uKD.gif)
+
+### 7. ClearAll, reset everything
+
+- Deletion handled with clearAll.
+- Solution was to just copypaste the initial state into `handleClearAll()`
+
+![](https://i.imgur.com/V3azIUG.gif)
+
+### 8. Added evaluate functionality
+
+- For simplicity, adjusted "x" to "\*" and "÷" to "/"
+- Used `eval` to evaluate, alternative was dijkstra algorithm
+
+![](https://i.imgur.com/T8s69jn.gif)
+
+### 9. Reset after evaluate on numbers
+
+- Use a set state `evaluate` flag to determine whether a calculation was just made.
+- Added to it so far to `handleNumbers`
+
+![](https://i.imgur.com/7iWRGk1.gif)
+
+### 10. Allow operation after evaluate
+
+- Add logic on `evaluate` in `handleOperators` to catch if evaluate was previous command
+- Removed prevValue state variable was not needed
+
+![](https://i.imgur.com/qLP8VBi.gif)
+
+### 11. Evaluate even if operator is last char
+
+- Use two temp variables to store the state `tempFormula` and `evaluate` so easier to clean input before `eval`
+
+![](https://i.imgur.com/joBRYGe.gif)
+
+### 12. Reset decimal value after evaluate
+
+- Seperate logic for adding `.`, one on initialization and reset, another for ongoing formula values with numbers, and last for everything else
+
+![](https://i.imgur.com/roLdp5U.gif)
