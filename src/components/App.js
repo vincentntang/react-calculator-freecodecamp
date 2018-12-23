@@ -52,8 +52,9 @@ class App extends Component {
       curValue: 0, // current Number Token
       prevValue: 0,
       formula: "",
-      curSign: "",
       evaluated: false
+      // curSign: "",
+      // lastClicked:"",
     });
   };
   handleClearEntry = () => {};
@@ -66,14 +67,12 @@ class App extends Component {
         this.setState({
           // Allow operator change on current token
           curValue: e.target.value,
-          curSign: e.target.value,
           formula: this.state.formula.slice(0, -1) + e.target.value
         });
       } else {
         this.setState({
           curValue: e.target.value,
-          formula: this.state.formula + e.target.value,
-          curSign: e.target.value
+          formula: this.state.formula + e.target.value
         });
       }
     }
