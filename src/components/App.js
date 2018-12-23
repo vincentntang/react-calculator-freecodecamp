@@ -89,7 +89,7 @@ class App extends Component {
     if (this.state.evaluated) {
       this.setState({
         curValue: e.target.value,
-        formula: e.target.value === 0 ? e.target.value : "",
+        formula: e.target.value == 0 ? "" : e.target.value,
         evaluated: false
       });
       // else, behave normally
@@ -97,7 +97,7 @@ class App extends Component {
       if (this.state.curValue == 0 && e.target.value == 0) {
         // do nothing
       } else if (
-        this.state.curValue === 0 ||
+        this.state.curValue == 0 ||
         isOperator.test(this.state.curValue)
       ) {
         // Remove initialization and operator from token
