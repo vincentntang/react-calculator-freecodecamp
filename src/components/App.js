@@ -57,7 +57,6 @@ class App extends Component {
       evaluated: false
     });
   };
-  handleClearEntry = () => {};
   handleOperators = e => {
     if (this.state.evaluated) {
       this.setState({
