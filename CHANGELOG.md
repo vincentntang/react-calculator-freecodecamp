@@ -52,3 +52,10 @@ Things learned
 - Used `eval` to evaluate, alternative was dijkstra algorithm
 
 ![](https://i.imgur.com/T8s69jn.gif)
+
+### 9. Reset after evaluate on numbers
+
+- Use a set state `evaluate` flag to determine whether a calculation was just made.
+- Added to it so far to `handleNumbers`
+
+![](https://i.imgur.com/7iWRGk1.gif)

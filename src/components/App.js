@@ -54,7 +54,8 @@ class App extends Component {
       prevValue: 0,
       formula: "",
       curSign: "",
-      lastClicked: ""
+      lastClicked: "",
+      evaluated: false
     });
   };
   handleClearEntry = () => {};
@@ -81,18 +82,27 @@ class App extends Component {
     }
   };
   handleNumbers = e => {
-    if (this.state.curValue === 0 || isOperator.test(this.state.curValue)) {
-      // Remove initialization and operator from token
-      this.setState({ curValue: e.target.value });
+    if (this.state.evaluated) {
+      this.setState({
+        curValue: e.target.value,
+        formula: e.target.value,
+        evaluated: false
+      });
+      // else, behave normally
     } else {
-      // Capture a sequence of numbers
-      this.setState({ curValue: this.state.curValue + e.target.value });
+      if (this.state.curValue === 0 || isOperator.test(this.state.curValue)) {
+        // Remove initialization and operator from token
+        this.setState({ curValue: e.target.value });
+      } else {
+        // Capture a sequence of numbers
+        this.setState({ curValue: this.state.curValue + e.target.value });
+      }
+      this.setState({
+        prevValue: e.target.value,
+        formula: this.state.formula + e.target.value,
+        lastClicked: e.target.value
+      });
     }
-    this.setState({
-      prevValue: e.target.value,
-      formula: this.state.formula + e.target.value,
-      lastClicked: e.target.value
-    });
   };
   handleEvaluate = () => {
     let evaluate = eval(this.state.formula);
