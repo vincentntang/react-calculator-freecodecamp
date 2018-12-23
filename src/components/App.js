@@ -60,7 +60,7 @@ class App extends Component {
   handleClearEntry = () => {};
   handleOperators = e => {
     // Disallow first value as operator
-    if (!this.state.curValue === 0) {
+    if (!(this.state.curValue === 0)) {
       // Forbid sequential operators
       if (endsWithOperator.test(this.state.formula)) {
         this.setState({
