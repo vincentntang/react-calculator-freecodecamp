@@ -45,3 +45,10 @@ Things learned
 - Solution was to just copypaste the initial state into `handleClearAll()`
 
 ![](https://i.imgur.com/V3azIUG.gif)
+
+### 8. Added evaluate functionality
+
+- For simplicity, adjusted "x" to "\*" and "÷" to "/"
+- Used `eval` to evaluate, alternative was dijkstra algorithm
+
+![](https://i.imgur.com/T8s69jn.gif)

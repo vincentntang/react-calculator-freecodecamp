@@ -6,8 +6,9 @@ import Header from "./Header";
 import "../styles/App.css";
 // import { operations, isOper } from "../helpers/operators";
 
-const isOperator = /[x÷+-]/;
+const isOperator = /[*\/+-]/;
 const hasDecimal = /[.]/;
+const endsWithOperator = /[*\/+-]$/;
 
 /**
  * REQUIREMENTS
@@ -27,6 +28,7 @@ const hasDecimal = /[.]/;
  * Stage 4.1: Disallow multiple "." per numeric token (related)
  * Stage 4.2: curValue should capture a sequence of numbers
  * Stage 5: Creation of values done, now delete with clearAll
+ * Stage 6: Evaluate all
  */
 
 class App extends Component {
@@ -35,7 +37,8 @@ class App extends Component {
     prevValue: 0,
     formula: "",
     curSign: "",
-    lastClicked: ""
+    lastClicked: "",
+    evaluated: false
   };
   componentDidMount() {
     console.log("I was triggered during componentDidMount");
@@ -92,7 +95,13 @@ class App extends Component {
     });
   };
   handleEvaluate = () => {
-    this.setState({});
+    let evaluate = eval(this.state.formula);
+    this.setState({
+      prevValue: this.state.curValue,
+      curValue: evaluate,
+      formula: this.state.formula + "=" + evaluate,
+      evaluated: true
+    });
   };
   handleDecimal = () => {
     // If operator previously used, the first value must be "0."
@@ -101,6 +110,7 @@ class App extends Component {
         curValue: "0.",
         formula: this.state.formula + "0."
       });
+      // otherwise just add a period
     } else if (!hasDecimal.test(this.state.curValue)) {
       this.setState({
         curValue: this.state.curValue + ".",
