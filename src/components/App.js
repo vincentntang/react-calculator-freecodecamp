@@ -89,21 +89,29 @@ class App extends Component {
     if (this.state.evaluated) {
       this.setState({
         curValue: e.target.value,
-        formula: e.target.value,
+        formula: e.target.value === 0 ? e.target.value : "",
         evaluated: false
       });
       // else, behave normally
     } else {
-      if (this.state.curValue === 0 || isOperator.test(this.state.curValue)) {
+      if (this.state.curValue == 0 && e.target.value == 0) {
+        // do nothing
+      } else if (
+        this.state.curValue === 0 ||
+        isOperator.test(this.state.curValue)
+      ) {
         // Remove initialization and operator from token
-        this.setState({ curValue: e.target.value });
+        this.setState({
+          curValue: e.target.value,
+          formula: this.state.formula + e.target.value
+        });
       } else {
         // Capture a sequence of numbers
-        this.setState({ curValue: this.state.curValue + e.target.value });
+        this.setState({
+          curValue: this.state.curValue + e.target.value,
+          formula: this.state.formula + e.target.value
+        });
       }
-      this.setState({
-        formula: this.state.formula + e.target.value
-      });
     }
   };
   handleEvaluate = () => {
