@@ -103,11 +103,15 @@ class App extends Component {
     }
   };
   handleEvaluate = () => {
-    let evaluate = eval(this.state.formula);
+    let tempFormula = this.state.formula;
+    // Remove last char if operator
+    if (endsWithOperator.test(tempFormula)) {
+      tempFormula = tempFormula.slice(0, -1);
+    }
+    let evaluate = eval(tempFormula);
     this.setState({
-      prevValue: this.state.curValue,
       curValue: evaluate,
-      formula: this.state.formula + "=" + evaluate,
+      formula: tempFormula + "=" + evaluate,
       evaluated: true
     });
   };

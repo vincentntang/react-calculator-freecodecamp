@@ -66,3 +66,9 @@ Things learned
 - Removed prevValue state variable was not needed
 
 ![](https://i.imgur.com/qLP8VBi.gif)
+
+### 11. Evaluate even if operator is last char
+
+- Use two temp variables to store the state `tempFormula` and `evaluate` so easier to clean input before `eval`
+
+![](https://i.imgur.com/joBRYGe.gif)
