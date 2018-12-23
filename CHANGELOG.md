@@ -59,3 +59,10 @@ Things learned
 - Added to it so far to `handleNumbers`
 
 ![](https://i.imgur.com/7iWRGk1.gif)
+
+### 10. Allow operation after evaluate
+
+- Add logic on `evaluate` in `handleOperators` to catch if evaluate was previous command
+- Removed prevValue state variable was not needed
+
+![](https://i.imgur.com/qLP8VBi.gif)

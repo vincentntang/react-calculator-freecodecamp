@@ -50,29 +50,37 @@ class App extends Component {
     // Reset everything
     this.setState({
       curValue: 0, // current Number Token
-      prevValue: 0,
       formula: "",
       evaluated: false
+      // prevValue: 0,
       // curSign: "",
       // lastClicked:"",
     });
   };
   handleClearEntry = () => {};
   handleOperators = e => {
-    // Disallow first value as operator
-    if (!(this.state.curValue === 0)) {
-      // Forbid sequential operators
-      if (endsWithOperator.test(this.state.formula)) {
-        this.setState({
-          // Allow operator change on current token
-          curValue: e.target.value,
-          formula: this.state.formula.slice(0, -1) + e.target.value
-        });
-      } else {
-        this.setState({
-          curValue: e.target.value,
-          formula: this.state.formula + e.target.value
-        });
+    if (this.state.evaluated) {
+      this.setState({
+        formula: this.state.curValue + e.target.value,
+        curValue: e.target.value,
+        evaluated: false
+      });
+    } else {
+      // Disallow first value as operator
+      if (!(this.state.curValue === 0)) {
+        // Forbid sequential operators
+        if (endsWithOperator.test(this.state.formula)) {
+          this.setState({
+            // Allow operator change on current token
+            curValue: e.target.value,
+            formula: this.state.formula.slice(0, -1) + e.target.value
+          });
+        } else {
+          this.setState({
+            curValue: e.target.value,
+            formula: this.state.formula + e.target.value
+          });
+        }
       }
     }
   };
@@ -94,7 +102,6 @@ class App extends Component {
         this.setState({ curValue: this.state.curValue + e.target.value });
       }
       this.setState({
-        prevValue: e.target.value,
         formula: this.state.formula + e.target.value
       });
     }
