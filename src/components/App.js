@@ -59,9 +59,8 @@ class App extends Component {
   };
   handleClearEntry = () => {};
   handleOperators = e => {
-    if (this.state.curValue === 0) {
-      // Disallow first value as operator
-    } else {
+    // Disallow first value as operator
+    if (!this.state.curValue === 0) {
       // Forbid sequential operators
       if (endsWithOperator.test(this.state.formula)) {
         this.setState({
@@ -78,6 +77,7 @@ class App extends Component {
     }
   };
   handleNumbers = e => {
+    // Reset if "=" was last command
     if (this.state.evaluated) {
       this.setState({
         curValue: e.target.value,
