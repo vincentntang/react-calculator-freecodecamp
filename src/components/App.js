@@ -33,28 +33,24 @@ const endsWithOperator = /[*\/+-]$/;
 
 class App extends Component {
   state = {
-    curValue: 0, // current Number Token
-    prevValue: 0,
+    curValue: 0,
     formula: "",
-    curSign: "",
     evaluated: false
+    // prevValue: 0,
+    // curSign: "",
+    // lastClicked:"",
   };
   componentDidMount() {
     console.log("I was triggered during componentDidMount");
   }
   componentDidUpdate() {
-    // For debugging purposes
-    console.log(this.state);
+    console.log("I updated");
   }
   handleClearAll = () => {
-    // Reset everything
     this.setState({
-      curValue: 0, // current Number Token
+      curValue: 0,
       formula: "",
       evaluated: false
-      // prevValue: 0,
-      // curSign: "",
-      // lastClicked:"",
     });
   };
   handleClearEntry = () => {};
